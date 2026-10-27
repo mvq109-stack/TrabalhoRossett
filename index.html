@@ -141,6 +141,17 @@
       transform: translateY(0);
       opacity: 1;
     }
+    /* Estilo aprimorado para cards sobre o fundo aquarela Sakura (Páginas 02, 03, 04 e 05) */
+    #filosofia .token-card,
+    #cores .token-card,
+    #tipografia .specimen-box,
+    #componentes .token-card {
+      background: rgba(255, 255, 255, 0.82) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(199, 131, 137, 0.35);
+      box-shadow: 0 10px 30px rgba(199, 131, 137, 0.12);
+    }
   </style>
 </head>
 <body class="bg-washi">
@@ -288,13 +299,24 @@
       </div>
     </section>
 
-    <!-- ==================== PALETA DE CORES ==================== -->
-    <section id="cores" class="koisei-section">
-      <div class="koisei-container">
+    <!-- ==================== PÁGINA 03 · PALETA DE CORES ==================== -->
+    <section id="cores" class="koisei-section" style="position: relative; overflow: hidden; min-height: 100vh; background-color: #fff9f7; background-image: url('./assets/images/sakura-branch-bg.png'); background-repeat: no-repeat; background-position: left bottom; background-size: cover; padding-top: 8rem; padding-bottom: 8rem; display: flex; align-items: center;">
+      
+      <!-- Camada de Imagem de Alta Fidelidade (Garante exibição imediata em qualquer navegador) -->
+      <div style="position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;">
+        <img src="./assets/images/sakura-branch-bg.png" alt="Aquarela de flores de cerejeira Sakura em tons suaves" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: left bottom; opacity: 1;">
+        <!-- Transição sutil no topo para suavizar a transição com a seção anterior -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(180deg, rgba(239, 234, 222, 0.6) 0%, transparent 100%);"></div>
+      </div>
+
+      <div class="koisei-container" style="position: relative; z-index: 20; width: 100%;">
         <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
-          <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Sistema Cromático</p>
-          <h2 class="reveal" style="margin-bottom: 1rem;">Paleta de Cores e Tokens</h2>
-          <p class="reveal" style="color: var(--koisei-text-muted);">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-akane" style="background: rgba(255, 255, 255, 0.85); display: inline-block; padding: 0.35rem 1.25rem; border-radius: 9999px; backdrop-filter: blur(6px); border: 1px solid rgba(199, 131, 137, 0.3); font-weight: 600;">
+            Página 03 · Sistema Cromático
+          </p>
+          <h2 class="reveal" style="margin-bottom: 1.5rem; text-shadow: 0 2px 20px rgba(255, 255, 255, 0.95); color: #201d17;">Paleta de Cores e Tokens</h2>
+          <div class="reveal koisei-divider-v"></div>
+          <p class="reveal" style="font-size: 1.125rem; color: #3d382f; text-shadow: 0 1px 15px rgba(255, 255, 255, 0.95); font-weight: 400;">
             Clique em qualquer código Hexadecimal ou RGB para copiar instantaneamente para a área de transferência.
           </p>
         </div>
@@ -393,13 +415,24 @@
       </div>
     </section>
 
-    <!-- ==================== TIPOGRAFIA ==================== -->
-    <section id="tipografia" class="koisei-section bg-alabaster">
-      <div class="koisei-container">
+    <!-- ==================== PÁGINA 04 · TIPOGRAFIA ==================== -->
+    <section id="tipografia" class="koisei-section" style="position: relative; overflow: hidden; min-height: 100vh; background-color: #fff9f7; background-image: url('./assets/images/sakura-branch-bg.png'); background-repeat: no-repeat; background-position: left bottom; background-size: cover; padding-top: 8rem; padding-bottom: 8rem; display: flex; align-items: center;">
+      
+      <!-- Camada de Imagem de Alta Fidelidade (Garante exibição imediata em qualquer navegador) -->
+      <div style="position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;">
+        <img src="./assets/images/sakura-branch-bg.png" alt="Aquarela de flores de cerejeira Sakura em tons suaves" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: left bottom; opacity: 1;">
+        <!-- Transição sutil no topo para suavizar a transição com a seção anterior -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(180deg, rgba(239, 234, 222, 0.6) 0%, transparent 100%);"></div>
+      </div>
+
+      <div class="koisei-container" style="position: relative; z-index: 20; width: 100%;">
         <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
-          <p class="reveal koisei-eyebrow koisei-eyebrow-akane">Trindade Tipográfica</p>
-          <h2 class="reveal" style="margin-bottom: 1rem;">Famílias e Hierarquia</h2>
-          <p class="reveal" style="color: var(--koisei-text-muted);">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-akane" style="background: rgba(255, 255, 255, 0.85); display: inline-block; padding: 0.35rem 1.25rem; border-radius: 9999px; backdrop-filter: blur(6px); border: 1px solid rgba(199, 131, 137, 0.3); font-weight: 600;">
+            Página 04 · Trindade Tipográfica
+          </p>
+          <h2 class="reveal" style="margin-bottom: 1.5rem; text-shadow: 0 2px 20px rgba(255, 255, 255, 0.95); color: #201d17;">Famílias e Hierarquia</h2>
+          <div class="reveal koisei-divider-v"></div>
+          <p class="reveal" style="font-size: 1.125rem; color: #3d382f; text-shadow: 0 1px 15px rgba(255, 255, 255, 0.95); font-weight: 400;">
             Harmonia entre serifas refinadas ocidentais e a tradição kanji japonesa Mincho.
           </p>
         </div>
@@ -468,13 +501,24 @@
       </div>
     </section>
 
-    <!-- ==================== COMPONENTES ==================== -->
-    <section id="componentes" class="koisei-section">
-      <div class="koisei-container">
+    <!-- ==================== PÁGINA 05 · COMPONENTES ==================== -->
+    <section id="componentes" class="koisei-section" style="position: relative; overflow: hidden; min-height: 100vh; background-color: #fff9f7; background-image: url('./assets/images/sakura-branch-bg.png'); background-repeat: no-repeat; background-position: left bottom; background-size: cover; padding-top: 8rem; padding-bottom: 8rem; display: flex; align-items: center;">
+      
+      <!-- Camada de Imagem de Alta Fidelidade (Garante exibição imediata em qualquer navegador) -->
+      <div style="position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;">
+        <img src="./assets/images/sakura-branch-bg.png" alt="Aquarela de flores de cerejeira Sakura em tons suaves" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: left bottom; opacity: 1;">
+        <!-- Transição sutil no topo para suavizar a transição com a seção anterior -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(180deg, rgba(239, 234, 222, 0.6) 0%, transparent 100%);"></div>
+      </div>
+
+      <div class="koisei-container" style="position: relative; z-index: 20; width: 100%;">
         <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
-          <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Biblioteca de Componentes</p>
-          <h2 class="reveal" style="margin-bottom: 1rem;">Elementos de Interface</h2>
-          <p class="reveal" style="color: var(--koisei-text-muted);">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-akane" style="background: rgba(255, 255, 255, 0.85); display: inline-block; padding: 0.35rem 1.25rem; border-radius: 9999px; backdrop-filter: blur(6px); border: 1px solid rgba(199, 131, 137, 0.3); font-weight: 600;">
+            Página 05 · Biblioteca de Componentes
+          </p>
+          <h2 class="reveal" style="margin-bottom: 1.5rem; text-shadow: 0 2px 20px rgba(255, 255, 255, 0.95); color: #201d17;">Elementos de Interface</h2>
+          <div class="reveal koisei-divider-v"></div>
+          <p class="reveal" style="font-size: 1.125rem; color: #3d382f; text-shadow: 0 1px 15px rgba(255, 255, 255, 0.95); font-weight: 400;">
             Componentes modulares, acessíveis e prontos para uso em qualquer aplicação web.
           </p>
         </div>
