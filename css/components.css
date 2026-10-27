@@ -310,3 +310,34 @@
   color: var(--koisei-text-primary, #201d17);
   text-shadow: var(--koisei-shadow-glow);
 }
+
+/* ==========================================================================
+   8. Fullscreen Hero Background Layer
+   ========================================================================== */
+.koisei-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.koisei-hero-bg img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.koisei-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(239, 234, 222, 0.45) 0%,
+    rgba(239, 234, 222, 0.15) 30%,
+    rgba(239, 234, 222, 0.40) 70%,
+    rgba(239, 234, 222, 0.96) 100%
+  );
+}

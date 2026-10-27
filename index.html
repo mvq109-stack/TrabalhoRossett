@@ -88,6 +88,39 @@
       color: var(--koisei-color-akane);
       border-bottom-color: var(--koisei-color-akane);
     }
+    .hero-calligraphy {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .hero-calligraphy {
+        display: block !important;
+      }
+    }
+    .hero-parallax-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      will-change: transform;
+      overflow: hidden;
+    }
+    .hero-parallax-bg img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .hero-gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(239, 234, 222, 0.45) 0%,
+        rgba(239, 234, 222, 0.15) 30%,
+        rgba(239, 234, 222, 0.40) 70%,
+        rgba(239, 234, 222, 0.96) 100%
+      );
+    }
     .toast {
       position: fixed;
       bottom: 2rem;
@@ -154,33 +187,45 @@
   <main id="top">
 
     <!-- ==================== HERO DO DESIGN SYSTEM ==================== -->
-    <section class="koisei-section koisei-section-fullscreen" style="padding-top: 10rem; padding-bottom: 6rem; text-align: center;">
-      <div class="koisei-container koisei-container-narrow">
-        <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Design System & Living Styleguide</p>
-        
-        <h1 class="reveal koisei-display-title" style="margin-bottom: 1.5rem;">KOISEI</h1>
+    <section id="hero" class="koisei-section koisei-section-fullscreen" style="position: relative; overflow: hidden; padding-top: 10rem; padding-bottom: 6rem; text-align: center;">
+      
+      <!-- Fundo com a Imagem de Cerejeiras e Ponte Japonesa -->
+      <div class="hero-parallax-bg" data-parallax="0.14">
+        <img src="./assets/images/hero-bg.png" alt="Jardim japonês com cerejeiras em flor e ponte vermelha tradicional">
+        <div class="hero-gradient-overlay"></div>
+      </div>
 
-        <p class="reveal" style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-style: italic; font-weight: 300; color: var(--koisei-text-secondary); max-width: 38rem; margin: 0 auto 2.5rem;">
+      <!-- Caligrafia Vertical Flutuante Lateral (Sakura & Hashi) -->
+      <div class="hero-calligraphy reveal" style="position: absolute; right: 3rem; top: 50%; transform: translateY(-50%); z-index: 20;">
+        <p class="koisei-calligraphy koisei-calligraphy-light" style="font-size: 2.75rem; letter-spacing: 0.5em; text-shadow: 0 2px 25px rgba(239, 234, 222, 0.9);">桜橋</p>
+      </div>
+
+      <div class="koisei-container koisei-container-narrow" style="position: relative; z-index: 20;">
+        <p class="reveal koisei-eyebrow koisei-eyebrow-ash" style="background: rgba(239, 234, 222, 0.65); display: inline-block; padding: 0.35rem 1.25rem; border-radius: 9999px; backdrop-filter: blur(6px); border: 1px solid rgba(93, 87, 75, 0.2);">Design System & Living Styleguide</p>
+        
+        <h1 class="reveal koisei-display-title" style="margin-bottom: 1.5rem; text-shadow: 0 2px 35px rgba(244, 238, 227, 0.95), 0 8px 30px rgba(32, 29, 23, 0.12);">KOISEI</h1>
+
+        <p class="reveal" style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-style: italic; font-weight: 400; color: #201d17; max-width: 38rem; margin: 0 auto 2.5rem; text-shadow: 0 1px 18px rgba(244, 238, 227, 0.9);">
           Onde a tinta encontra o papel washi, e a correnteza preserva a memória das flores.
         </p>
 
         <div class="reveal" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;">
-          <span class="seal koisei-seal koisei-seal-lg">
+          <span class="seal koisei-seal koisei-seal-lg" style="box-shadow: 0 8px 20px rgba(156, 45, 36, 0.35);">
             <span>水</span>
           </span>
-          <span class="seal koisei-seal koisei-seal-lg">
+          <span class="seal koisei-seal koisei-seal-lg" style="box-shadow: 0 8px 20px rgba(156, 45, 36, 0.35);">
             <span>鯉</span>
           </span>
-          <span class="seal koisei-seal koisei-seal-lg">
+          <span class="seal koisei-seal koisei-seal-lg" style="box-shadow: 0 8px 20px rgba(156, 45, 36, 0.35);">
             <span>流</span>
           </span>
         </div>
 
         <div class="reveal" style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
-          <a href="#componentes" class="koisei-btn koisei-btn-filled-akane">
+          <a href="#componentes" class="koisei-btn koisei-btn-filled-akane" style="box-shadow: 0 6px 20px rgba(156, 45, 36, 0.35);">
             Explorar Componentes
           </a>
-          <a href="#cores" class="koisei-btn koisei-btn-outline-light">
+          <a href="#cores" class="koisei-btn koisei-btn-outline-light" style="background: rgba(239, 234, 222, 0.75); backdrop-filter: blur(6px);">
             Ver Paleta de Cores
           </a>
         </div>
