@@ -1,0 +1,94 @@
+/**
+ * Koisei Design System - CSS Custom Properties
+ * Aesthetic: Japanese Wabi-Sabi Minimalist / Ink & Water Atelier
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap');
+
+:root {
+  /* Brand Colors */
+  --koisei-color-akane: #9c2d24;           /* Japanese Lacquer Red / Vermilion */
+  --koisei-color-akane-rgb: 156, 45, 36;
+  --koisei-color-sakura: #c78389;          /* Sakura Petal Rose */
+  --koisei-color-sakura-rgb: 199, 131, 137;
+
+  /* Surfaces (Light Theme / Day Paper) */
+  --koisei-surface-base: #efeade;          /* Washi Paper Cream */
+  --koisei-surface-card: #f4eee3;          /* Alabaster Parchment */
+  --koisei-surface-dark: #211b15;          /* Sumi Night Black */
+
+  /* Text Colors (Light Theme) */
+  --koisei-text-primary: #201d17;          /* Sumi Carbon Ink */
+  --koisei-text-secondary: #3d382f;        /* Earthen Charcoal */
+  --koisei-text-muted: #5d574b;            /* Warm Ash Stone */
+  --koisei-text-faint: rgba(93, 87, 75, 0.70);
+  --koisei-text-inverted: #f4eee3;         /* Alabaster on Dark */
+
+  /* Borders & Dividers (Light Theme) */
+  --koisei-border-subtle: rgba(93, 87, 75, 0.25);
+  --koisei-border-medium: rgba(32, 29, 23, 0.35);
+  --koisei-border-accent: #9c2d24;
+  --koisei-divider-hairline: rgba(93, 87, 75, 0.40);
+
+  /* Gradients */
+  --koisei-gradient-header: linear-gradient(180deg, rgba(239, 234, 222, 0.55), transparent);
+  --koisei-gradient-section-fade: linear-gradient(180deg, #efeade, transparent);
+
+  /* Typography Families */
+  --koisei-font-display: 'Playfair Display', Georgia, serif;
+  --koisei-font-body: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --koisei-font-kanji: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+
+  /* Typography Weights */
+  --koisei-weight-light: 300;
+  --koisei-weight-regular: 400;
+  --koisei-weight-medium: 500;
+  --koisei-weight-semibold: 600;
+
+  /* Letter Spacing (Tracking) */
+  --koisei-tracking-tighter: -0.025em;
+  --koisei-tracking-tight: -0.015em;
+  --koisei-tracking-normal: 0em;
+  --koisei-tracking-brand: 0.22em;
+  --koisei-tracking-pill: 0.24em;
+  --koisei-tracking-nav: 0.28em;
+  --koisei-tracking-wide: 0.30em;
+  --koisei-tracking-eyebrow: 0.40em;
+  --koisei-tracking-calligraphy: 0.50em;
+
+  /* Radii */
+  --koisei-radius-seal: 3px;
+  --koisei-radius-full: 9999px;
+
+  /* Shadows */
+  --koisei-shadow-seal-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --koisei-shadow-seal-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --koisei-shadow-seal-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+  --koisei-shadow-glow: 0 1px 40px rgba(244, 238, 227, 0.60);
+
+  /* Transitions & Animation Easing */
+  --koisei-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --koisei-ease-bounce-seal: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --koisei-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --koisei-duration-fast: 300ms;
+  --koisei-duration-medium: 500ms;
+  --koisei-duration-seal: 600ms;
+  --koisei-duration-theme: 700ms;
+  --koisei-duration-reveal: 900ms;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"],
+.theme-dark {
+  --koisei-surface-base: #211b15;
+  --koisei-surface-card: #28211b;
+  --koisei-text-primary: #f4eee3;
+  --koisei-text-secondary: rgba(244, 238, 227, 0.85);
+  --koisei-text-muted: rgba(244, 238, 227, 0.60);
+  --koisei-text-faint: rgba(244, 238, 227, 0.50);
+  --koisei-border-subtle: rgba(244, 238, 227, 0.12);
+  --koisei-border-medium: rgba(244, 238, 227, 0.40);
+  --koisei-divider-hairline: rgba(244, 238, 227, 0.20);
+  --koisei-gradient-header: linear-gradient(180deg, rgba(33, 27, 21, 0.45), transparent);
+}

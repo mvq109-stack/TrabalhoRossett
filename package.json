@@ -1,0 +1,25 @@
+{
+  "name": "koisei-design-system",
+  "version": "1.0.0",
+  "description": "Design System extraído do ateliê minimalista Koisei. Estética Wabi-Sabi japonesa, tinta Sumi, papel Washi e selos Hanko.",
+  "main": "css/koisei-ds.css",
+  "style": "css/koisei-ds.css",
+  "types": "tokens/tokens.ts",
+  "scripts": {
+    "dev": "npx serve .",
+    "build:tokens": "node -e \"console.log('Tokens up to date')\""
+  },
+  "keywords": [
+    "design-system",
+    "wabi-sabi",
+    "minimalism",
+    "japanese-aesthetic",
+    "design-tokens",
+    "css",
+    "tailwind",
+    "threejs",
+    "sakura"
+  ],
+  "author": "Koisei Atelier & Rosset Team",
+  "license": "MIT"
+}

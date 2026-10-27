@@ -1,0 +1,108 @@
+/**
+ * Koisei Design System - Animations & Motion
+ */
+
+/* Reveal effect for editorial text and elements */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hanko Seal Stamp entry animation */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6) rotate(-8deg);
+  transition: opacity 0.6s ease,
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+}
+
+.seal.is-stamped,
+.is-visible .seal {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Growing ink underline for links */
+.link-ink-underline {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-ink-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: var(--koisei-color-akane, #9c2d24);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-ink-underline:hover::after,
+.group:hover .link-ink-underline::after {
+  width: 100%;
+}
+
+/* Bounce micro-interaction */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 1.8s infinite;
+}
+
+/* Captions cross-fade transition */
+.film-caption {
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.film-caption.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Reduced Motion Support (Accessibility standard) */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .seal,
+  .film-caption {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .animate-bounce-subtle {
+    animation: none !important;
+  }
+
+  .link-ink-underline::after {
+    transition: none !important;
+  }
+}

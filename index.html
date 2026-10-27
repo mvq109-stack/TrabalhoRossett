@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Koisei Design System — Living Styleguide & Showcase</title>
+
+  <!-- Google Fonts: Playfair Display, Cormorant Garamond, Shippori Mincho -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Master Design System Stylesheet -->
+  <link rel="stylesheet" href="./css/koisei-ds.css">
+
+  <!-- Three.js for Interactive Sakura Petals Canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <style>
+    /* Showcase specific polish */
+    .token-card {
+      background: var(--koisei-surface-card, #f4eee3);
+      border-radius: 4px;
+      padding: 1.25rem;
+      border: 1px solid var(--koisei-border-subtle, rgba(93, 87, 75, 0.25));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .token-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(32, 29, 23, 0.08);
+    }
+    .color-swatch {
+      width: 100%;
+      height: 90px;
+      border-radius: 3px;
+      margin-bottom: 0.75rem;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .copy-pill {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.5rem;
+      background: rgba(32, 29, 23, 0.08);
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: background 0.2s ease;
+    }
+    .copy-pill:hover {
+      background: rgba(32, 29, 23, 0.16);
+    }
+    .specimen-box {
+      background: var(--koisei-surface-card, #f4eee3);
+      border: 1px solid var(--koisei-border-subtle, rgba(93, 87, 75, 0.25));
+      padding: 2.5rem;
+      border-radius: 4px;
+    }
+    .code-block {
+      background: #1a1512;
+      color: #f4eee3;
+      padding: 1.25rem;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      border: 1px solid rgba(244, 238, 227, 0.1);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--koisei-font-body);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: var(--koisei-text-muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .tab-btn.active {
+      color: var(--koisei-color-akane);
+      border-bottom-color: var(--koisei-color-akane);
+    }
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #201d17;
+      color: #f4eee3;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 100;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-washi">
+
+  <!-- Camada de Tatilidade: Textura de Papel Washi com Ruído Fractal -->
+  <div class="koisei-paper-grain" aria-hidden="true"></div>
+
+  <!-- Camada WebGL de Pétalas de Cerejeira (Sakura) Interativas -->
+  <canvas id="petals" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15;"></canvas>
+
+  <!-- Cabeçalho Dinâmico Adaptativo -->
+  <header id="siteHeader" class="koisei-header">
+    <div class="koisei-header-inner">
+      <a href="#top" class="koisei-brand">
+        <span class="koisei-seal koisei-seal-sm">
+          <span>鯉</span>
+        </span>
+        <span id="brandText" class="koisei-brand-text">Koisei DS</span>
+      </a>
+
+      <nav id="navLinks" class="koisei-nav">
+        <a href="#filosofia" class="link-ink-underline">Filosofia</a>
+        <a href="#cores" class="link-ink-underline">Cores</a>
+        <a href="#tipografia" class="link-ink-underline">Tipografia</a>
+        <a href="#componentes" class="link-ink-underline">Componentes</a>
+        <a href="#movimento" class="link-ink-underline">Movimento</a>
+        <a href="#tokens" class="link-ink-underline">Tokens</a>
+      </nav>
+
+      <a href="./docs/DESIGN_SYSTEM.md" target="_blank" id="visitBtn" class="koisei-btn koisei-btn-outline-light">
+        Docs MD
+      </a>
+    </div>
+  </header>
+
+  <!-- Indicador Vertical de Progresso de Rolagem (Flow) -->
+  <div class="koisei-scroll-indicator">
+    <span class="koisei-scroll-label" id="progLabel">Flow</span>
+    <div class="koisei-scroll-track">
+      <div id="progBar" class="koisei-scroll-bar"></div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ==================== HERO DO DESIGN SYSTEM ==================== -->
+    <section class="koisei-section koisei-section-fullscreen" style="padding-top: 10rem; padding-bottom: 6rem; text-align: center;">
+      <div class="koisei-container koisei-container-narrow">
+        <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Design System & Living Styleguide</p>
+        
+        <h1 class="reveal koisei-display-title" style="margin-bottom: 1.5rem;">KOISEI</h1>
+
+        <p class="reveal" style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-style: italic; font-weight: 300; color: var(--koisei-text-secondary); max-width: 38rem; margin: 0 auto 2.5rem;">
+          Onde a tinta encontra o papel washi, e a correnteza preserva a memória das flores.
+        </p>
+
+        <div class="reveal" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;">
+          <span class="seal koisei-seal koisei-seal-lg">
+            <span>水</span>
+          </span>
+          <span class="seal koisei-seal koisei-seal-lg">
+            <span>鯉</span>
+          </span>
+          <span class="seal koisei-seal koisei-seal-lg">
+            <span>流</span>
+          </span>
+        </div>
+
+        <div class="reveal" style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+          <a href="#componentes" class="koisei-btn koisei-btn-filled-akane">
+            Explorar Componentes
+          </a>
+          <a href="#cores" class="koisei-btn koisei-btn-outline-light">
+            Ver Paleta de Cores
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FILOSOFIA & PRINCÍPIOS ==================== -->
+    <section id="filosofia" class="koisei-section bg-alabaster">
+      <div class="koisei-container">
+        <div style="text-align: center; max-width: 44rem; margin: 0 auto 4rem;">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-akane">Princípios Fundamentais</p>
+          <h2 class="reveal" style="margin-bottom: 1.5rem;">A Poética do Vazio e da Tinta</h2>
+          <div class="reveal koisei-divider-v"></div>
+          <p class="reveal" style="font-size: 1.25rem; color: var(--koisei-text-muted);">
+            Inspirado na estética japonesa do Wabi-Sabi e nos ateliês tradicionais de aquarela e caligrafia com tinta Sumi.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          <div class="token-card reveal">
+            <div style="margin-bottom: 1rem;">
+              <span class="koisei-seal koisei-seal-md"><span>間</span></span>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Ma (間) · O Espaço Negativo</h3>
+            <p style="color: var(--koisei-text-muted); font-size: 1rem;">
+              O espaço em branco não é ausência, mas respiração. Margens generosas, entrelinhas arejadas e composições que convidam à contemplação e foco no essencial.
+            </p>
+          </div>
+
+          <div class="token-card reveal">
+            <div style="margin-bottom: 1rem;">
+              <span class="koisei-seal koisei-seal-md"><span>墨</span></span>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Sumi (墨) · Contraste Orgânico</h3>
+            <p style="color: var(--koisei-text-muted); font-size: 1rem;">
+              Tons de carvão profundo em diálogo constante com a textura aconchegante do papel washi natural. Uma escala tonal rica em calor humano.
+            </p>
+          </div>
+
+          <div class="token-card reveal">
+            <div style="margin-bottom: 1rem;">
+              <span class="koisei-seal koisei-seal-md"><span>印</span></span>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Hanko (印) · Ponto Focal</h3>
+            <p style="color: var(--koisei-text-muted); font-size: 1rem;">
+              O carimbo vermelho laca (*Akane*) confere autoridade poética e funciona como âncora visual, pontuando os momentos de decisão e transição do usuário.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PALETA DE CORES ==================== -->
+    <section id="cores" class="koisei-section">
+      <div class="koisei-container">
+        <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Sistema Cromático</p>
+          <h2 class="reveal" style="margin-bottom: 1rem;">Paleta de Cores e Tokens</h2>
+          <p class="reveal" style="color: var(--koisei-text-muted);">
+            Clique em qualquer código Hexadecimal ou RGB para copiar instantaneamente para a área de transferência.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+          
+          <!-- Akane -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #9C2D24;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Akane Vermilion</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Vermelho Laca Oficial (Selo Hanko)</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#9C2D24')">#9C2D24</span>
+              <span class="copy-pill" onclick="copyText('rgb(156, 45, 36)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Sakura -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #C78389;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Sakura Rose</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Rosa Pétala de Cerejeira</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#C78389')">#C78389</span>
+              <span class="copy-pill" onclick="copyText('rgb(199, 131, 137)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Washi -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #EFEADE; border: 1px solid rgba(0,0,0,0.1);"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Washi Cream</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Papel Artesanal (Fundo Claro)</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#EFEADE')">#EFEADE</span>
+              <span class="copy-pill" onclick="copyText('rgb(239, 234, 222)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Alabaster -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #F4EEE3; border: 1px solid rgba(0,0,0,0.1);"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Alabaster</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Pergaminho de Cartão e Texto Noturno</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#F4EEE3')">#F4EEE3</span>
+              <span class="copy-pill" onclick="copyText('rgb(244, 238, 227)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Sumi Ink -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #201D17;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Sumi Ink</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Tinta de Carvão (Texto Primário)</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#201D17')">#201D17</span>
+              <span class="copy-pill" onclick="copyText('rgb(32, 29, 23)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Sumi Night -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #211B15;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Sumi Night</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Fundo de Seções Escuras / Noite</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#211B15')">#211B15</span>
+              <span class="copy-pill" onclick="copyText('rgb(33, 27, 21)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Earthen Charcoal -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #3D382F;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Earthen Charcoal</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Subtítulos e Prosa em Destaque</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#3D382F')">#3D382F</span>
+              <span class="copy-pill" onclick="copyText('rgb(61, 56, 47)')">RGB</span>
+            </div>
+          </div>
+
+          <!-- Warm Ash -->
+          <div class="token-card reveal">
+            <div class="color-swatch" style="background-color: #5D574B;"></div>
+            <h4 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Warm Ash</h4>
+            <p style="font-size: 0.8125rem; color: var(--koisei-text-muted); margin-bottom: 0.75rem;">Links, Divisores e Textos de Apoio</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="copy-pill" onclick="copyText('#5D574B')">#5D574B</span>
+              <span class="copy-pill" onclick="copyText('rgb(93, 87, 75)')">RGB</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TIPOGRAFIA ==================== -->
+    <section id="tipografia" class="koisei-section bg-alabaster">
+      <div class="koisei-container">
+        <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-akane">Trindade Tipográfica</p>
+          <h2 class="reveal" style="margin-bottom: 1rem;">Famílias e Hierarquia</h2>
+          <p class="reveal" style="color: var(--koisei-text-muted);">
+            Harmonia entre serifas refinadas ocidentais e a tradição kanji japonesa Mincho.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          
+          <!-- Playfair Display -->
+          <div class="specimen-box reveal">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1px solid var(--koisei-border-subtle); padding-bottom: 0.5rem;">
+              <span style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--koisei-color-akane);">Títulos & Logotipo</span>
+              <span style="font-size: 0.8125rem; color: var(--koisei-text-muted);">Playfair Display · Serif</span>
+            </div>
+            <h2 style="font-family: var(--koisei-font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; margin-bottom: 1rem;">
+              The river remembers every spring.
+            </h2>
+            <p style="font-family: var(--koisei-font-display); font-size: 1.5rem; font-style: italic; color: var(--koisei-text-secondary);">
+              Where the river keeps the blossom's memory.
+            </p>
+          </div>
+
+          <!-- Cormorant Garamond -->
+          <div class="specimen-box reveal">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1px solid var(--koisei-border-subtle); padding-bottom: 0.5rem;">
+              <span style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--koisei-color-akane);">Corpo & Prosa Poética</span>
+              <span style="font-size: 0.8125rem; color: var(--koisei-text-muted);">Cormorant Garamond · Serif</span>
+            </div>
+            <p style="font-family: var(--koisei-font-body); font-size: 1.35rem; font-weight: 300; line-height: 1.8; color: var(--koisei-text-primary); margin-bottom: 1rem;">
+              Ink settles. Koi turn below the surface. The page moves because the current does. Wood, stone, water, and blossom meet without hurry. The bridge is a pause, not a destination.
+            </p>
+            <p style="font-family: var(--koisei-font-body); font-size: 1.125rem; font-style: italic; color: var(--koisei-text-muted);">
+              A narrow stream keeps its own pace beside the lane. The figure stays small because the landscape is the story.
+            </p>
+          </div>
+
+          <!-- Shippori Mincho & Caligrafia Vertical -->
+          <div class="specimen-box reveal" style="display: flex; gap: 3rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 260px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1px solid var(--koisei-border-subtle); padding-bottom: 0.5rem;">
+                <span style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--koisei-color-akane);">Kanji & Selos</span>
+                <span style="font-size: 0.8125rem; color: var(--koisei-text-muted);">Shippori Mincho · 縦書き</span>
+              </div>
+              <p style="font-size: 1.125rem; color: var(--koisei-text-secondary); margin-bottom: 1rem;">
+                Tipografia tradicional com terminações elegantes em pincelada, utilizada nos ideogramas dos selos Hanko (鯉, 水, 流, 夜) e como âncoras caligráficas verticais.
+              </p>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <span class="koisei-seal koisei-seal-lg"><span>鯉</span></span>
+                <span class="koisei-seal koisei-seal-lg"><span>水</span></span>
+                <span class="koisei-seal koisei-seal-lg"><span>流</span></span>
+                <span class="koisei-seal koisei-seal-lg"><span>夜</span></span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 2rem; background: var(--koisei-surface-base); padding: 1.5rem 2.5rem; border-radius: 4px; border: 1px solid var(--koisei-border-subtle);">
+              <div style="text-align: center;">
+                <p class="koisei-calligraphy koisei-calligraphy-light" style="font-size: 2.25rem;">春水</p>
+                <span style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--koisei-text-muted);">Harumizu</span>
+              </div>
+              <div style="text-align: center;">
+                <p class="koisei-calligraphy koisei-calligraphy-light" style="font-size: 2.25rem;">京の水</p>
+                <span style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--koisei-text-muted);">Kyo no Mizu</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== COMPONENTES ==================== -->
+    <section id="componentes" class="koisei-section">
+      <div class="koisei-container">
+        <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-ash">Biblioteca de Componentes</p>
+          <h2 class="reveal" style="margin-bottom: 1rem;">Elementos de Interface</h2>
+          <p class="reveal" style="color: var(--koisei-text-muted);">
+            Componentes modulares, acessíveis e prontos para uso em qualquer aplicação web.
+          </p>
+        </div>
+
+        <!-- 1. Selos Hanko com botão de re-animação -->
+        <div class="token-card reveal" style="margin-bottom: 2.5rem; padding: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">1. Selos Hanko (印鑑)</h3>
+              <p style="font-size: 0.875rem; color: var(--koisei-text-muted);">Quadrados com arredondamento sutil de 3px, sombra e animação elástica de carimbo.</p>
+            </div>
+            <button class="koisei-btn koisei-btn-outline-light" onclick="replaySeals()">
+              Carimbar Novamente
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 2rem; align-items: flex-end; flex-wrap: wrap; padding: 1.5rem 0; border-top: 1px solid var(--koisei-border-subtle);">
+            <div style="text-align: center;">
+              <span class="seal koisei-seal koisei-seal-sm test-seal"><span>鯉</span></span>
+              <p style="font-size: 0.75rem; color: var(--koisei-text-muted); margin-top: 0.5rem;">Pequeno (32px)</p>
+            </div>
+            <div style="text-align: center;">
+              <span class="seal koisei-seal koisei-seal-md test-seal"><span>流</span></span>
+              <p style="font-size: 0.75rem; color: var(--koisei-text-muted); margin-top: 0.5rem;">Médio (40px)</p>
+            </div>
+            <div style="text-align: center;">
+              <span class="seal koisei-seal koisei-seal-lg test-seal"><span>水</span></span>
+              <p style="font-size: 0.75rem; color: var(--koisei-text-muted); margin-top: 0.5rem;">Grande (44px)</p>
+            </div>
+            <div style="text-align: center;">
+              <span class="seal koisei-seal koisei-seal-xl test-seal"><span>夜</span></span>
+              <p style="font-size: 0.75rem; color: var(--koisei-text-muted); margin-top: 0.5rem;">Extra Grande (56px)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Botões Pílula e Links -->
+        <div class="token-card reveal" style="margin-bottom: 2.5rem; padding: 2rem;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">2. Botões e Ações</h3>
+          <p style="font-size: 0.875rem; color: var(--koisei-text-muted); margin-bottom: 1.5rem;">Formato pílula (rounded-full) com tracking expandido e micro-interação ao hover.</p>
+
+          <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; padding: 1.5rem 0; border-top: 1px solid var(--koisei-border-subtle); margin-bottom: 1.5rem;">
+            <a href="javascript:void(0)" class="koisei-btn koisei-btn-outline-light">
+              Visit Atelier
+            </a>
+
+            <a href="javascript:void(0)" class="koisei-btn koisei-btn-filled-akane">
+              Explore Collection
+            </a>
+
+            <div style="background: #211b15; padding: 1rem 1.5rem; border-radius: 4px; display: inline-flex;">
+              <a href="javascript:void(0)" class="koisei-btn koisei-btn-outline-dark">
+                Begin Again
+              </a>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap;">
+            <a href="javascript:void(0)" class="link-ink-underline" style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.28em; color: var(--koisei-text-muted);">
+              Hover Underline (River)
+            </a>
+
+            <a href="javascript:void(0)" class="link-ink-underline" style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.28em; color: var(--koisei-color-akane);">
+              Active Link (Temple)
+            </a>
+
+            <a href="javascript:void(0)" class="group" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.3em;">
+              <span class="link-ink-underline">Follow the current</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Cartão Poético de Conteúdo -->
+        <div class="token-card reveal" style="padding: 2.5rem; text-align: center; max-width: 36rem; margin: 0 auto;">
+          <p class="koisei-eyebrow koisei-eyebrow-sakura">Exemplo de Composição</p>
+          <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">The current below the blossoms.</h3>
+          <div class="koisei-divider-v" style="height: 2.5rem; margin: 1.5rem auto;"></div>
+          <p style="font-weight: 300; font-size: 1.125rem; color: var(--koisei-text-muted); margin-bottom: 2rem;">
+            Rings widen around stones while petals move at the river's pace. The current carries the page toward temple eaves, red rails, and quiet Kyoto water.
+          </p>
+          <span class="koisei-seal koisei-seal-md"><span>水</span></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CÓDIGOS & TOKENS ==================== -->
+    <section id="tokens" class="koisei-section bg-sumi">
+      <div class="koisei-container">
+        <div style="text-align: center; max-width: 44rem; margin: 0 auto 3.5rem;">
+          <p class="reveal koisei-eyebrow koisei-eyebrow-sakura">Integração do Desenvolvedor</p>
+          <h2 class="reveal" style="margin-bottom: 1rem; color: var(--koisei-text-inverted);">Como Utilizar o Koisei DS</h2>
+          <p class="reveal" style="color: rgba(244, 238, 227, 0.75);">
+            Pronto para consumo via CSS nativo, Tailwind CSS ou TypeScript.
+          </p>
+        </div>
+
+        <div class="token-card reveal" style="background: #15110d; border-color: rgba(244, 238, 227, 0.15); padding: 2rem;">
+          <div style="display: flex; gap: 1rem; border-bottom: 1px solid rgba(244, 238, 227, 0.15); padding-bottom: 1rem; margin-bottom: 1.5rem; overflow-x: auto;">
+            <button class="tab-btn active" onclick="switchTab('htmlTab', this)">HTML / CSS</button>
+            <button class="tab-btn" onclick="switchTab('tailwindTab', this)">Tailwind CSS</button>
+            <button class="tab-btn" onclick="switchTab('tsTab', this)">TypeScript Tokens</button>
+          </div>
+
+          <div id="htmlTab" class="code-tab">
+            <pre class="code-block"><code>&lt;!-- Importe o CSS Mestre do Koisei no &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="./css/koisei-ds.css"&gt;
+
+&lt;!-- Inicialize o motor de revelação e tema no fim do &lt;body&gt; --&gt;
+&lt;script src="./js/koisei-motion.js"&gt;&lt;/script&gt;
+
+&lt;!-- Exemplo de botão e selo Hanko em HTML: --&gt;
+&lt;span class="koisei-seal koisei-seal-md"&gt;
+  &lt;span&gt;鯉&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;a href="#explore" class="koisei-btn koisei-btn-outline-light"&gt;
+  Enter the water
+&lt;/a&gt;</code></pre>
+          </div>
+
+          <div id="tailwindTab" class="code-tab" style="display: none;">
+            <pre class="code-block"><code>// tailwind.config.js
+module.exports = {
+  presets: [require('./tokens/tailwind.config.js')],
+  theme: {
+    extend: {
+      colors: {
+        'koisei-akane': '#9c2d24',
+        'koisei-washi': '#efeade',
+        'koisei-sumi': '#211b15',
+      }
+    }
+  }
+}
+
+// Uso no JSX / HTML:
+&lt;div className="bg-koisei-washi text-koisei-sumi font-display"&gt;
+  &lt;span className="flex items-center justify-center w-10 h-10 rounded-[3px] bg-[#9c2d24] text-[#f4eee3] shadow-md"&gt;
+    &lt;span className="font-['Shippori_Mincho']"&gt;水&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div id="tsTab" class="code-tab" style="display: none;">
+            <pre class="code-block"><code>// Importando tokens em React, Vue ou Node:
+import { colors, typography, motion } from './tokens/tokens';
+
+const primaryAccent = colors.brand.akane; // #9C2D24
+const fontFamily = typography.fontFamily.display; // 'Playfair Display', Georgia, serif
+const easeCurve = motion.easing.smooth; // 'cubic-bezier(0.22, 1, 0.36, 1)'</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé Institucional -->
+  <footer class="bg-sumi" style="border-top: 1px solid rgba(244, 238, 227, 0.12); padding: 4rem 0;">
+    <div class="koisei-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span class="koisei-seal koisei-seal-sm"><span>鯉</span></span>
+        <span style="font-family: var(--koisei-font-display); text-transform: uppercase; letter-spacing: 0.22em; color: var(--koisei-text-inverted);">Koisei Design System</span>
+      </div>
+      <p style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(244, 238, 227, 0.5);">
+        © 2026 Koisei · Ink, water, blossom.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast de Notificação -->
+  <div id="toast" class="toast">Copiado com sucesso!</div>
+
+  <!-- Scripts do Motor Koisei -->
+  <script src="./js/koisei-motion.js"></script>
+  <script src="./js/koisei-petals.js"></script>
+  <script>
+    // Inicialização do efeito de pétalas WebGL (Three.js)
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initSakuraPetals === 'function') {
+        initSakuraPetals('petals');
+      }
+    });
+
+    // Função de Cópia com Toast
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = `Copiado: ${text}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+
+    // Abas de Código
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.code-tab').forEach(t => t.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).style.display = 'block';
+      btn.classList.add('active');
+    }
+
+    // Replay da Animação dos Selos
+    function replaySeals() {
+      const seals = document.querySelectorAll('.test-seal');
+      seals.forEach(s => {
+        s.style.opacity = '0';
+        s.style.transform = 'scale(0.6) rotate(-8deg)';
+        setTimeout(() => {
+          s.style.opacity = '1';
+          s.style.transform = 'scale(1) rotate(0deg)';
+        }, 150);
+      });
+    }
+  </script>
+</body>
+</html>

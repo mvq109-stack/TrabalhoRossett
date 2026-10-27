@@ -1,0 +1,91 @@
+{
+  "system": "Koisei Palette System",
+  "palette": {
+    "akane": {
+      "name": "Akane Lacquer / Vermilion",
+      "hex": "#9C2D24",
+      "rgb": "rgb(156, 45, 36)",
+      "hsl": "hsl(5, 63%, 38%)",
+      "role": "Primary Brand Accent, Hanko Seals, Active indicators, Progress indicator",
+      "contrastOnWashi": "5.4:1 (Passes WCAG AA)",
+      "contrastOnAlabaster": "5.9:1 (Passes WCAG AAA for large text, AA for regular)"
+    },
+    "sakura": {
+      "name": "Sakura Bloom / Dusk Rose",
+      "hex": "#C78389",
+      "rgb": "rgb(199, 131, 137)",
+      "hsl": "hsl(355, 38%, 65%)",
+      "role": "Secondary Accent, Eyebrows on dark surfaces, Petal particle hues",
+      "contrastOnNight": "4.8:1 (Passes WCAG AA for large text)"
+    },
+    "washi": {
+      "name": "Washi Cream (Paper Base)",
+      "hex": "#EFEADE",
+      "rgb": "rgb(239, 234, 222)",
+      "hsl": "hsl(42, 35%, 90%)",
+      "role": "Default Canvas & Body Surface Background in Light Mode"
+    },
+    "alabaster": {
+      "name": "Alabaster Parchment",
+      "hex": "#F4EEE3",
+      "rgb": "rgb(244, 238, 227)",
+      "hsl": "hsl(39, 44%, 92%)",
+      "role": "Section surface, Seal typography, Primary text on dark surfaces"
+    },
+    "sumiNight": {
+      "name": "Sumi Night / Charcoal River",
+      "hex": "#211B15",
+      "rgb": "rgb(33, 27, 21)",
+      "hsl": "hsl(30, 22%, 11%)",
+      "role": "Dark Mode Canvas & Section Background"
+    },
+    "sumiInk": {
+      "name": "Sumi Ink / Deep Carbon",
+      "hex": "#201D17",
+      "rgb": "rgb(32, 29, 23)",
+      "hsl": "hsl(40, 16%, 11%)",
+      "role": "Headings, Primary Text in Light Mode, Brand wordmark"
+    },
+    "warmAsh": {
+      "name": "Warm Ash / River Stone",
+      "hex": "#5D574B",
+      "rgb": "rgb(93, 87, 75)",
+      "hsl": "hsl(40, 11%, 33%)",
+      "role": "Secondary/Muted Text, Navigation Links, Dividers"
+    },
+    "earthenCharcoal": {
+      "name": "Earthen Charcoal",
+      "hex": "#3D382F",
+      "rgb": "rgb(61, 56, 47)",
+      "hsl": "hsl(39, 13%, 21%)",
+      "role": "Italic body lead text, Subtitles in Light Mode"
+    }
+  },
+  "alphaChannels": {
+    "light": {
+      "borderDefault": "rgba(32, 29, 23, 0.35)",
+      "dividerDefault": "rgba(93, 87, 75, 0.40)",
+      "trackDefault": "rgba(93, 87, 75, 0.25)",
+      "labelDefault": "rgba(93, 87, 75, 0.70)",
+      "calligraphyDefault": "rgba(32, 29, 23, 0.75)"
+    },
+    "dark": {
+      "borderSubtle": "rgba(244, 238, 227, 0.12)",
+      "borderMedium": "rgba(244, 238, 227, 0.40)",
+      "textHigh": "rgba(244, 238, 227, 0.85)",
+      "textMedium": "rgba(244, 238, 227, 0.75)",
+      "textMuted": "rgba(244, 238, 227, 0.60)",
+      "textFaint": "rgba(244, 238, 227, 0.50)",
+      "calligraphyNight": "rgba(244, 238, 227, 0.55)"
+    }
+  },
+  "gradients": {
+    "headerLight": "linear-gradient(180deg, rgba(239, 234, 222, 0.55), transparent)",
+    "headerDark": "linear-gradient(180deg, rgba(33, 27, 21, 0.45), transparent)",
+    "heroMist": "linear-gradient(180deg, rgba(239, 234, 222, 0.35) 0%, rgba(239, 234, 222, 0.05) 35%, rgba(239, 234, 222, 0.15) 70%, rgba(239, 234, 222, 0.85) 100%)",
+    "filmVignette": "linear-gradient(180deg, rgba(32, 29, 23, 0.15), transparent 40%, rgba(32, 29, 23, 0.45))",
+    "nightVignette": "linear-gradient(180deg, rgba(33, 27, 21, 0.55), rgba(33, 27, 21, 0.15) 45%, rgba(33, 27, 21, 0.90))",
+    "canalMist": "linear-gradient(90deg, rgba(32, 29, 23, 0.50), rgba(32, 29, 23, 0.10) 55%, transparent)",
+    "sectionFade": "linear-gradient(180deg, #efeade, transparent)"
+  }
+}

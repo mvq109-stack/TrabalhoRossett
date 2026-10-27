@@ -1,0 +1,146 @@
+/**
+ * ==========================================================================
+ * KOISEI DESIGN SYSTEM - MASTER CSS BUNDLE
+ * Version: 1.0.0
+ * Concept: Where the river keeps the blossom's memory
+ * Japanese Wabi-Sabi Minimalist Ink & Water Atelier
+ * ==========================================================================
+ */
+
+@import url('./../tokens/tokens.css');
+@import url('./animations.css');
+@import url('./components.css');
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--koisei-surface-base, #efeade);
+  color: var(--koisei-text-primary, #201d17);
+  font-family: var(--koisei-font-body, 'Cormorant Garamond', serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--koisei-font-display, 'Playfair Display', serif);
+  font-weight: 500;
+  letter-spacing: var(--koisei-tracking-tight, -0.015em);
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 6rem); }
+h2 { font-size: clamp(2.25rem, 5vw, 4.5rem); }
+h3 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Layout Containers & Utilities
+   ========================================================================== */
+.koisei-container {
+  width: 100%;
+  max-width: 80rem; /* 1280px (7xl) */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .koisei-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.koisei-container-narrow {
+  max-width: 48rem; /* 768px */
+}
+
+.koisei-container-prose {
+  max-width: 42rem; /* 672px */
+}
+
+.koisei-section {
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 640px) {
+  .koisei-section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.koisei-section-fullscreen {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Surface Utilities
+   ========================================================================== */
+.bg-washi {
+  background-color: var(--koisei-surface-base, #efeade);
+}
+
+.bg-alabaster {
+  background-color: var(--koisei-surface-card, #f4eee3);
+}
+
+.bg-sumi {
+  background-color: var(--koisei-surface-dark, #211b15);
+  color: var(--koisei-text-inverted, #f4eee3);
+}
+
+/* ==========================================================================
+   Color Utilities
+   ========================================================================== */
+.text-akane { color: var(--koisei-color-akane, #9c2d24); }
+.text-sakura { color: var(--koisei-color-sakura, #c78389); }
+.text-ink { color: var(--koisei-text-primary, #201d17); }
+.text-charcoal { color: var(--koisei-text-secondary, #3d382f); }
+.text-ash { color: var(--koisei-text-muted, #5d574b); }
+.text-alabaster { color: var(--koisei-surface-card, #f4eee3); }

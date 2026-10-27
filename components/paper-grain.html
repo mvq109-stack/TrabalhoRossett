@@ -1,0 +1,18 @@
+<!--
+  Componente: Washi Paper Grain Texture Overlay (Textura de Papel Washi)
+  Descrição: Camada SVG procedural fixa com filtro de ruído fractal para conferir tatilidade orgânica de papel japonês.
+  Características: pointer-events-none, z-index alto, mix-blend-mode: multiply, opacidade 0.5.
+-->
+
+<div class="koisei-paper-grain" aria-hidden="true"></div>
+
+<!-- Código SVG puro equivalente: -->
+<!--
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <filter id="n">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="200" height="200" filter="url(#n)" opacity="0.06"/>
+</svg>
+-->

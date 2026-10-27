@@ -1,0 +1,312 @@
+/**
+ * Koisei Design System - Components
+ */
+
+/* ==========================================================================
+   1. Hanko Seal Stamp (判子 / 印鑑)
+   Traditional vermilion lacquer seal stamp with kanji glyph
+   ========================================================================== */
+.koisei-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--koisei-color-akane, #9c2d24);
+  color: var(--koisei-surface-card, #f4eee3);
+  border-radius: var(--koisei-radius-seal, 3px);
+  font-family: var(--koisei-font-kanji, 'Shippori Mincho', serif);
+  font-weight: 500;
+  line-height: 1;
+  user-select: none;
+  box-shadow: var(--koisei-shadow-seal-sm);
+}
+
+.koisei-seal-sm {
+  width: 2rem;       /* 32px */
+  height: 2rem;
+  font-size: 0.75rem; /* 12px */
+  box-shadow: var(--koisei-shadow-seal-sm);
+}
+
+.koisei-seal-md {
+  width: 2.5rem;     /* 40px */
+  height: 2.5rem;
+  font-size: 0.8125rem; /* 13px */
+  box-shadow: var(--koisei-shadow-seal-md);
+}
+
+.koisei-seal-lg {
+  width: 2.75rem;    /* 44px */
+  height: 2.75rem;
+  font-size: 0.875rem; /* 14px */
+  box-shadow: var(--koisei-shadow-seal-lg);
+}
+
+.koisei-seal-xl {
+  width: 3.5rem;     /* 56px */
+  height: 3.5rem;
+  font-size: 1.125rem; /* 18px */
+  box-shadow: var(--koisei-shadow-seal-lg);
+}
+
+/* ==========================================================================
+   2. Pill Buttons (Pílula Minimalista)
+   Refined outline buttons with subtle translation and wide tracking
+   ========================================================================== */
+.koisei-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-family: var(--koisei-font-body, 'Cormorant Garamond', serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--koisei-tracking-pill, 0.24em);
+  border-radius: var(--koisei-radius-full, 9999px);
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  transition: all var(--koisei-duration-fast, 300ms) ease;
+}
+
+.koisei-btn:hover {
+  transform: translateY(-2px);
+}
+
+.koisei-btn:active {
+  transform: translateY(0);
+}
+
+/* Light Theme Variant */
+.koisei-btn-outline-light {
+  border: 1px solid var(--koisei-border-medium, rgba(32, 29, 23, 0.35));
+  color: var(--koisei-text-primary, #201d17);
+  padding: 0.625rem 1.25rem;
+}
+
+.koisei-btn-outline-light:hover {
+  border-color: var(--koisei-color-akane, #9c2d24);
+  color: var(--koisei-color-akane, #9c2d24);
+}
+
+/* Dark Theme Variant */
+.koisei-btn-outline-dark {
+  border: 1px solid var(--koisei-border-medium, rgba(244, 238, 227, 0.40));
+  color: var(--koisei-text-inverted, #f4eee3);
+  padding: 0.75rem 2rem;
+  letter-spacing: var(--koisei-tracking-wide, 0.30em);
+}
+
+.koisei-btn-outline-dark:hover {
+  border-color: var(--koisei-text-inverted, #f4eee3);
+  background: rgba(244, 238, 227, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Filled Accent Variant */
+.koisei-btn-filled-akane {
+  background-color: var(--koisei-color-akane, #9c2d24);
+  border: 1px solid var(--koisei-color-akane, #9c2d24);
+  color: var(--koisei-surface-card, #f4eee3);
+  padding: 0.75rem 2rem;
+}
+
+.koisei-btn-filled-akane:hover {
+  background-color: #83251e;
+  box-shadow: 0 4px 14px rgba(156, 45, 36, 0.35);
+}
+
+/* ==========================================================================
+   3. Navigation Header
+   Dynamic fixed header with auto-adapting colors on light/dark zones
+   ========================================================================== */
+.koisei-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: background var(--koisei-duration-theme, 700ms) ease,
+              color var(--koisei-duration-theme, 700ms) ease;
+  background: var(--koisei-gradient-header);
+}
+
+.koisei-header-inner {
+  max-width: 80rem; /* 1280px */
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .koisei-header-inner {
+    padding: 1.25rem 2.5rem;
+  }
+}
+
+.koisei-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.koisei-brand-text {
+  font-family: var(--koisei-font-display, 'Playfair Display', serif);
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--koisei-tracking-brand, 0.22em);
+  color: var(--koisei-text-primary, #201d17);
+  transition: color var(--koisei-duration-theme, 700ms) ease;
+}
+
+.koisei-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--koisei-tracking-nav, 0.28em);
+  color: var(--koisei-text-muted, #5d574b);
+  transition: color var(--koisei-duration-theme, 700ms) ease;
+}
+
+@media (min-width: 768px) {
+  .koisei-nav {
+    display: flex;
+  }
+}
+
+/* Dark state of header (activated when crossing into dark sections) */
+.koisei-header.is-dark {
+  background: linear-gradient(180deg, rgba(33, 27, 21, 0.45), transparent);
+}
+
+.koisei-header.is-dark .koisei-brand-text {
+  color: var(--koisei-text-inverted, #f4eee3);
+}
+
+.koisei-header.is-dark .koisei-nav {
+  color: rgba(244, 238, 227, 0.75);
+}
+
+.koisei-header.is-dark .koisei-btn {
+  color: var(--koisei-text-inverted, #f4eee3);
+  border-color: rgba(244, 238, 227, 0.40);
+}
+
+/* ==========================================================================
+   4. Scroll Progress Indicator
+   Vertical minimalist flow indicator centered at screen bottom
+   ========================================================================== */
+.koisei-scroll-indicator {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.koisei-scroll-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--koisei-tracking-wide, 0.30em);
+  color: var(--koisei-text-faint, rgba(93, 87, 75, 0.70));
+}
+
+.koisei-scroll-track {
+  width: 1px;
+  height: 3.5rem; /* 56px */
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: var(--koisei-border-subtle, rgba(93, 87, 75, 0.25));
+}
+
+.koisei-scroll-bar {
+  width: 100%;
+  height: 0%;
+  background-color: var(--koisei-color-akane, #9c2d24);
+  transition: height 0.08s linear;
+}
+
+/* ==========================================================================
+   5. Vertical Japanese Calligraphy
+   Traditional tategaki (縦書き) vertical orientation
+   ========================================================================== */
+.koisei-calligraphy {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--koisei-font-kanji, 'Shippori Mincho', serif);
+  letter-spacing: var(--koisei-tracking-calligraphy, 0.50em);
+  line-height: 1.6;
+  font-weight: 500;
+  user-select: none;
+}
+
+.koisei-calligraphy-light {
+  color: rgba(32, 29, 23, 0.75);
+}
+
+.koisei-calligraphy-dark {
+  color: rgba(244, 238, 227, 0.55);
+}
+
+/* ==========================================================================
+   6. Paper Grain Texture Overlay
+   Organic Washi paper tactile feel
+   ========================================================================== */
+.koisei-paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   7. Typography Accents & Dividers
+   ========================================================================== */
+.koisei-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--koisei-tracking-eyebrow, 0.40em);
+  margin-bottom: 1.5rem;
+}
+
+.koisei-eyebrow-ash {
+  color: var(--koisei-text-muted, #5d574b);
+}
+
+.koisei-eyebrow-akane {
+  color: var(--koisei-color-akane, #9c2d24);
+}
+
+.koisei-eyebrow-sakura {
+  color: var(--koisei-color-sakura, #c78389);
+}
+
+.koisei-divider-v {
+  width: 1px;
+  height: 4rem;
+  margin: 2.5rem auto;
+  background-color: var(--koisei-divider-hairline, rgba(93, 87, 75, 0.40));
+}
+
+.koisei-display-title {
+  font-family: var(--koisei-font-display, 'Playfair Display', serif);
+  font-weight: 500;
+  letter-spacing: var(--koisei-tracking-tighter, -0.025em);
+  line-height: 1;
+  font-size: clamp(4.5rem, 16vw, 13rem);
+  color: var(--koisei-text-primary, #201d17);
+  text-shadow: var(--koisei-shadow-glow);
+}
